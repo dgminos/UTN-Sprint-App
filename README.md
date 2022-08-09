@@ -1,6 +1,6 @@
 # UTN-Sprint-App
 
-Integrantes: 
+Members: 
 
 * Carla Domecq,
 
