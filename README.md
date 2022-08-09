@@ -1,4 +1,4 @@
-# UTN-Sprint-App.
+# UTN Sprint App.
 
 Project description:
 first group project for the UTN's Diploma in Web Programming full-stack. It is an app where you can view, add, edit and delete tasks.
