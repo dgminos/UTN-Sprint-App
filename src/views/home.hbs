@@ -1,0 +1,36 @@
+
+<nav class="navbar">
+  <div class="container-fluid px-5">
+    <a class="navbar-brand fw-bold" href="/"><i class="bi bi-list-task">Task Manager App</i></a>
+    <div class="d-flex">
+      <a class="btn" id="add-new-task-link" href="/addTask">Add new task</a>
+    </div>
+  </div>
+</nav>
+   <div class="container home-container mt-5 mb-5">
+        <h4 class="mb-5 fw-bold text-center"> Tasks list</h4>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col">
+                <div class="card home-card h-100 bg-light bg-opacity-10 border border-info shadow-lg">
+                    <div class="card-body home-card-body">
+                    <span class="card-title fw-bold"> Title: </span>
+                    <p>{{taskTitle}}</p>
+                        <span class="card-text fw-bold"> Created by:</span> 
+                        <p>{{taskCreatedBy}}</p>
+                    <span class="card-text fw-bold"> Description:</span>
+                    <p>{{taskDescription}}</p>
+                    <span class="card-text fw-bold"> Date:</span>
+                    <span id="date-span"></span>
+                    <span class="card-text fw-bold ms-3"> Label:</span> 
+                    <span>{{taskLabel}}</span>
+                    <hr>
+                <div class="cards-buttons d-flex justify-content-around">
+                    <a class="btn btn-outline-success btn-lg edit-task-link" href="/editTask/{{idTask}}"><i class="bi bi-pencil-fill"></i></a>
+                    <a class="btn btn-outline-danger btn-lg delete-task-link" href="/deleteTask/{{idTask}}"><i class="bi bi-trash-fill"></i></a>
+                </div>
+
+                  </div>
+                </div>
+              </div>
+      </div> 
+      </div> 
