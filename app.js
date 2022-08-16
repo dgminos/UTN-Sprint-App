@@ -3,7 +3,7 @@ import express from 'express'
 import path from 'path'
 import {fileURLToPath} from 'url'
 import hbs from 'hbs'
-import { router } from './src/routes/home.routes.js'
+import { router } from './src/routes/tasks.routes.js'
 
 export const app = express()
 

@@ -1,0 +1,42 @@
+<nav class="navbar">
+  <div class="container-fluid px-5">
+    <a class="navbar-brand fw-bold" href="/"><i class="bi bi-list-task">Task Manager App</i></a>
+  </div>
+</nav>
+<div class="container mt-5 mb-5">
+        <h4 class="mb-5 mt-5 fw-bold text-center"> Add task</h4>
+        <div class="d-flex justify-content-center align-items-center">
+   <form class="row g-3 needs-validation add-task-form mb-5 py-3" novalidate action="/" method="POST">
+  <div class="col-12">
+    <label for="taskTitle" class="form-label">Title</label>
+    <input type="text" class="form-control" id="taskTitle" value="" name="taskTitle"required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="taskCreatedBy" class="form-label">Created by</label>
+    <input type="text" class="form-control" id="taskCreatedBy" value="" name="taskCreatedBy" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+ <div class=" col-12">
+                <label for="taskDescription" class="form-label">Description</label>
+                <textarea id="taskDescription" name="taskDescription" rows="3" class="form-control"></textarea>
+              </div>
+    <div class="col-12">
+  <select class="form-select" aria-label="Default select example">
+  <option selected>Select task label importance</option>
+  <option value="high" name="high">High</option>
+  <option value="medium" name="medium">Medium</option>
+  <option value="low" name="low">Low</option>
+</select>
+  </div>
+  <div class="col d-flex add-task-buttons">
+    <button class="btn add-task-button me-3" type="submit">Add task</button>
+    <a class="btn cancel-add-task-button" type="button" href="/">Cancel</a>
+  </div>
+</form>
+        </div>
+      </div> 
