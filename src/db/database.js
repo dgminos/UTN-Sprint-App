@@ -1,7 +1,7 @@
 
-import mysql from 'mysql2'
+import mysql2 from 'mysql2'
 
-export const connection = mysql.createConnection({
+export const connection = mysql2.createConnection({
     host: process.env.DBHOST,
     user: process.env.DBUSER,
     password: process.env.DBPASSWORD,
@@ -12,4 +12,3 @@ connection.connect((err) =>{
         if(err) throw err;
         console.log('Connected to database');
     })
-module.exports = connection;
