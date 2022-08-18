@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  background-color: #edf5f2; 
+} 
+
 .home-container {
   min-height: 100vh;
   width: 100%;
@@ -11,12 +15,14 @@
 
 .navbar {
   min-height: 100px;
-  background-color: #121817;
+  background: #0000004d;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .navbar-brand i {
   font-size: 30px; 
-  color: #ced7dd;
 }
 
 #add-new-task-link, .add-task-button {
@@ -37,15 +43,21 @@
   background-color: #569ccc;
 } 
 
-.home-card, .add-task-form {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+.home-card-body, .add-task-form {
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background: rgba(216, 180, 180, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.1px);
+  -webkit-backdrop-filter: blur(3.1px);
+  border: 1px solid rgba(216, 180, 180, 0.31);
+  color: #121817;
+  text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
 }
 
 .home-card-body:hover {
-  color: #055e2c;
   transition: all 0.6s ease-out;
   opacity: 1;
-  border: 1px solid #00838d;
+  border: 1px solid #04636a;
 }
 
 .edit-task-link i, .delete-task-link i {
@@ -69,6 +81,7 @@
   background-color: #728984;
   -webkit-text-stroke: 1px #f5f0f0;
   color: white;
+  text-shadow: none;
 }
 
 .cancel-add-task-button:hover {
@@ -78,12 +91,15 @@
 }
 
 footer {
-  background-color: #121817;
-  color: #ced7dd;
   width:100%;
   position: fixed; 
   bottom: 0;
+  background: #0000004d;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
+
 
 
 

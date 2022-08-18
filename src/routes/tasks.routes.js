@@ -9,6 +9,6 @@ router.get('/addTask', (req, res) =>{
     res.render('addTaskForm')
 })
 
-router.get('/editTask', (req, res) =>{
+router.get('/editTask/:id', (req, res) =>{
     res.render('editTaskForm')
 })
