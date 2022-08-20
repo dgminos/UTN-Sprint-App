@@ -10,6 +10,7 @@
    <div class="container home-container mt-5 mb-5">
         <h4 class="mb-5 fw-bold text-center"> Tasks list</h4>
             <div class="row row-cols-1 row-cols-md-3 g-4">
+              {{#each results}}
               <div class="col">
                 <div class="card home-card h-100 bg-light bg-opacity-10 border border-info shadow-lg">
                     <div class="card-body home-card-body">
@@ -20,7 +21,7 @@
                     <span class="card-text fw-bold"> Description:</span>
                     <p>{{taskDescription}}</p>
                     <span class="card-text fw-bold"> Date:</span>
-                    <span id="date-span"></span>
+                    <span>{{taskDate}}</span>
                     <span class="card-text fw-bold ms-3"> Label:</span> 
                     <span>{{taskLabel}}</span>
                     <hr>
@@ -31,5 +32,6 @@
                   </div>
                 </div>
               </div>
+               {{/each}}
       </div> 
       </div> 

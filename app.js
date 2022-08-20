@@ -30,4 +30,4 @@ app.use(router)
 
 app.listen(PORT, () => {
     console.log(`Server up running on port ${PORT}`)
-})
+}) 

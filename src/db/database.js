@@ -1,14 +1,16 @@
-
+import 'dotenv/config'
 import mysql2 from 'mysql2'
 
-export const connection = mysql2.createConnection({
-    host: process.env.DBHOST,
-    user: process.env.DBUSER,
-    password: process.env.DBPASSWORD,
-    port: process.env.DBPORT,
+export const db = mysql2.createConnection({
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    port: process.env.PORT,
     database: process.env.DATABASE,
 })
-connection.connect((err) =>{
+db.connect((err) =>{
         if(err) throw err;
         console.log('Connected to database');
     })
+
+
