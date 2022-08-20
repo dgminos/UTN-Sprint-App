@@ -13,7 +13,7 @@ export const getTasks = async (req, res) => {
     }
 }
 
-export const addTasks = async (req,res)=>{
+export const createTask = async (req,res)=>{
     try {
                 let sql="INSERT INTO tasks SET taskTitle='" + req.body.Title +"',taskDescription='" + req.body.Description +"', taskDate = now(), taskCreatedBy = '" + req.body.CreatedBy+"',taskLabel = '" + req.body.Label + "'";
                 let query=db.query(sql, (err, results)=>{
