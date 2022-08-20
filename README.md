@@ -15,3 +15,10 @@ Team members:
 * León M. Fornerino,
 
 * Diana Gabriela Miños.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Pages / flow design:
+
+
+![tasks-manager-app-design](https://user-images.githubusercontent.com/65367714/185751999-371ce747-f9bc-4835-889e-765cd2e7da8b.png)
