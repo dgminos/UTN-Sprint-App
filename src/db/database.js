@@ -5,7 +5,7 @@ export const db = mysql2.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
-    port: process.env.PORT,
+    port: process.env.DBPORT,
     database: process.env.DATABASE,
 })
 db.connect((err) =>{
