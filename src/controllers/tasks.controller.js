@@ -15,16 +15,10 @@ export const getTasks = async (req, res) => {
 
 export const addTasks = async (req,res)=>{
     try {
-                console.log(req.body);
-                const{Title,Description,CreatedBy,Label}= req.body;
-                
-  
-           let sql="INSERT INTO tasks SET taskTitle='" + req.body.Title +"',taskDescription='" + req.body.Description +"', taskDate = now(), taskCreatedBy = '" + req.body.CreatedBy+"',taskLabel = '" + req.body.Label + "'";
-                
-
+                let sql="INSERT INTO tasks SET taskTitle='" + req.body.Title +"',taskDescription='" + req.body.Description +"', taskDate = now(), taskCreatedBy = '" + req.body.CreatedBy+"',taskLabel = '" + req.body.Label + "'";
                 let query=db.query(sql, (err, results)=>{
                     if(err) throw err;
-                    res.redirect('home')
+                    res.redirect('/')
             });
         }catch (error) {
             return res.status(500).json({message: error.message})

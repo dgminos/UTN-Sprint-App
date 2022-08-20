@@ -6,9 +6,9 @@ export const router = Router()
 router.get('/', getTasks)
 
 router.get('/addTask',(req, res) =>{
-    res.render('addTaskForm')})
+    res.render('addTask')})
 router.post('/addTask', addTasks)
 
 router.get('/editTask/:id', (req, res) =>{
-    res.render('editTaskForm')
+    res.render('editTask')
 })

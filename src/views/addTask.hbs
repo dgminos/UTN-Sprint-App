@@ -5,7 +5,7 @@
 </nav>
 <div class="container mt-5 mb-5">
         <div class="d-flex justify-content-center align-items-center">
-   <form class="row g-3 needs-validation add-task-form mb-5 py-2 border-info" id="addTaskForm" novalidate action="/" method="POST">
+   <form class="row g-3 needs-validation add-task-form mb-5 py-2 border-info" id="addTaskForm"  action="/addTask" method="POST">
         <h2 class="fw-bold text-center"> Add task</h2>
   <div class="col-12">
     <label for="taskTitle" class="form-label fw-bold">Title</label>
@@ -26,7 +26,7 @@
                 <textarea id="taskDescription" name="Description" rows="3" class="form-control"></textarea>
               </div>
     <div class="col-12">
-  <select class="form-select fw-bold" name="label" aria-label="Default select example">
+  <select class="form-select fw-bold" name="Label" aria-label="Default select example">
   <option selected>Select task label importance</option>
   <option value="high" name="high">High</option>
   <option value="medium" name="medium">Medium</option>
