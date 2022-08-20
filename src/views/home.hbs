@@ -9,7 +9,7 @@
 </nav>
    <div class="container home-container mt-5 mb-5">
         <h4 class="mb-5 fw-bold text-center"> Tasks list</h4>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="Tasks">
               {{#each results}}
               <div class="col">
                 <div class="card home-card h-100 bg-light bg-opacity-10 border border-info shadow-lg">
@@ -26,12 +26,44 @@
                     <span>{{taskLabel}}</span>
                     <hr>
                 <div class="cards-buttons d-flex justify-content-around">
-                    <a class="btn btn-outline-success btn-lg edit-task-link" href="./editTask/{{idTask}}"><i class="bi bi-pencil-fill"></i></a>
-                    <a class="btn btn-outline-danger btn-lg delete-task-link" href="./deleteTask/{{idTask}}"><i class="bi bi-trash-fill"></i></a>
+                    <a class="btn btn-outline-success btn-lg edit-task-link" href="./editTask/{{taskId}}"><i class="bi bi-pencil-fill"></i></a>
+                    <a class="btn btn-outline-danger btn-lg delete-task-link" href="./deleteTask/{{taskId}}"><i class="bi bi-trash-fill"></i></a>
                 </div>
                   </div>
                 </div>
               </div>
                {{/each}}
       </div> 
-      </div> 
+      </div>  
+
+      {{!-- Modal delete --}}
+        <form id="add-row-form" action="/deleteTask" method="post">
+            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                    <strong>¿Are you sure do you want to delete this task?</strong>
+                    </div>
+                    <div class="modal-footer">
+                    <input type="hidden" name="id" class="form-control pid2" required>
+                        <button type="submit" class="btn btn-success">Delete</button>
+                    </div>
+                        </div>
+                </div>
+            </div>
+        </form>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+  $(document).ready(function(){
+  // Modal DELETE    
+    $('#Tasks').on('click', '.delete', function(){
+        let prod_id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.id').val(TaskId);
+    })
+})
+</script>

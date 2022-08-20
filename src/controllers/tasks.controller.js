@@ -23,4 +23,33 @@ export const createTask = async (req,res)=>{
         }catch (error) {
             return res.status(500).json({message: error.message})
         }
+}
+
+export const editorTask = (req, res) => {
+    const id  = req.params.id
+    db.query('SELECT * FROM tasks WHERE taskId=?', [id], (err, results) => {
+        if(err){
+            res.json(err)
         }
+        res.render('editTask', { results })
+    })
+}
+
+export const updateTask = (req, res) => {
+    const id  = req.params.id
+    console.log(req.body);
+    const data = req.body
+    db.query('UPDATE tasks SET ? WHERE taskId=?', [data, id], (error) => {
+        error? res.json(error.message) : 
+        res.redirect('/')
+    })
+}
+
+export const deleteTask = (req, res) => {
+    const id = req.params.id
+    db.query('DELETE FROM tasks WHERE taskId =?', [id],(error) => {
+        error? res.json(error.message) : 
+        res.redirect('/')
+    })
+
+}
