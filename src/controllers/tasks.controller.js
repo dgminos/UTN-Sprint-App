@@ -1,53 +1,41 @@
-import { db } from "../db/database.js"
+import { connection } from "../db/connection.js"
 
-export const getTasks = async (req, res) => {
-    try {
-        let sql = "SELECT taskId, taskTitle, taskDescription, DATE_FORMAT( taskDate, '%d/%m/%Y - %H:%I:%S') as taskDate, taskCreatedBy, taskLabel FROM tasks";
-
-    let query=db.query(sql,(err, results) => {
-        if(err) throw err;
+export const getTasks = (req, res) => {
+        let sql = "SELECT taskId, taskTitle, taskDescription, DATE_FORMAT( taskDate, '%d/%m/%Y') as taskDate, taskCreatedBy, taskLabel FROM tasks";
+        connection.query(sql,(error, results) => {
+        error? res.json(error.message) : 
         res.render('home', {results})
-    }); 
-    } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+    })  
 }
 
-export const createTask = async (req,res)=>{
-    try {
-                let sql="INSERT INTO tasks SET taskTitle='" + req.body.Title +"',taskDescription='" + req.body.Description +"', taskDate = now(), taskCreatedBy = '" + req.body.CreatedBy+"',taskLabel = '" + req.body.Label + "'";
-                let query=db.query(sql, (err, results)=>{
-                    if(err) throw err;
-                    res.redirect('/')
-            });
-        }catch (error) {
-            return res.status(500).json({message: error.message})
-        }
+export const createTask = (req,res)=>{
+        let sql="INSERT INTO tasks SET taskTitle='" + req.body.Title +"',taskDescription='" + req.body.Description +"', taskDate = now(), taskCreatedBy = '" + req.body.CreatedBy+"',taskLabel = '" + req.body.Label + "'";
+        connection.query(sql, (error, results)=>{
+        error? res.json(error.message) :
+        res.redirect('/')
+            })
 }
 
-export const editorTask = (req, res) => {
-    const id  = req.params.id
-    db.query('SELECT * FROM tasks WHERE taskId=?', [id], (err, results) => {
-        if(err){
-            res.json(err)
-        }
+export const getTaskById = (req, res) => {
+        const id  = req.params.id
+        connection.query('SELECT * FROM tasks WHERE taskId=?', [id], (error, results) => {
+        error? res.json(error.message) :
         res.render('editTask', { results })
     })
 }
 
 export const updateTask = (req, res) => {
-    const id  = req.params.id
-    console.log(req.body);
-    const data = req.body
-    db.query('UPDATE tasks SET ? WHERE taskId=?', [data, id], (error) => {
+        const id  = req.params.id
+        const data = req.body
+        connection.query('UPDATE tasks SET ? WHERE taskId=?', [data, id], (error) => {
         error? res.json(error.message) : 
         res.redirect('/')
     })
 }
 
 export const deleteTask = (req, res) => {
-    const id = req.params.id
-    db.query('DELETE FROM tasks WHERE taskId =?', [id],(error) => {
+        const id = req.body.id
+        connection.query('DELETE FROM tasks WHERE taskId =?', [id],(error) => {
         error? res.json(error.message) : 
         res.redirect('/')
     })

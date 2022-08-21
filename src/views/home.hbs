@@ -1,33 +1,36 @@
 
 <nav class="navbar">
   <div class="container-fluid px-5">
-    <a class="navbar-brand fw-bold" href="/"><i class="bi bi-list-task">Task Manager App</i></a>
+    <a class="navbar-brand fw-bold" href="/"><i class="bi bi-list-task">Tasks Manager App</i></a>
     <div class="d-flex">
       <a class="btn" id="add-new-task-link" href="/addTask">Add new task</a>
     </div>
   </div>
 </nav>
    <div class="container home-container mt-5 mb-5">
-        <h4 class="mb-5 fw-bold text-center"> Tasks list</h4>
+        <h2 class="mb-5 fw-bold text-center"> Tasks list</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4" id="Tasks">
               {{#each results}}
               <div class="col">
                 <div class="card home-card h-100 bg-light bg-opacity-10 border border-info shadow-lg">
                     <div class="card-body home-card-body">
-                    <span class="card-title fw-bold"> Title: </span>
+                    <h5 class="card-title fw-bold"> Title: </h5>
                     <p>{{taskTitle}}</p>
-                        <span class="card-text fw-bold"> Created by:</span> 
+                        <h5 class="card-text fw-bold"> Created by:</h5> 
                         <p>{{taskCreatedBy}}</p>
-                    <span class="card-text fw-bold"> Description:</span>
+                    <h5 class="card-text fw-bold"> Description:</h5>
                     <p>{{taskDescription}}</p>
-                    <span class="card-text fw-bold"> Date:</span>
-                    <span>{{taskDate}}</span>
-                    <span class="card-text fw-bold ms-3"> Label:</span> 
-                    <span>{{taskLabel}}</span>
+                    <h5 class="card-text fw-bold"> Date:</h5>
+                    <p>{{taskDate}}</p>
+                    <h5 class="card-text fw-bold"> Importance label:</h5> 
+                    <p>{{taskLabel}}</p>
                     <hr>
                 <div class="cards-buttons d-flex justify-content-around">
                     <a class="btn btn-outline-success btn-lg edit-task-link" href="./editTask/{{taskId}}"><i class="bi bi-pencil-fill"></i></a>
-                    <a class="btn btn-outline-danger btn-lg delete-task-link" href="./deleteTask/{{taskId}}"><i class="bi bi-trash-fill"></i></a>
+                    <form action="/deleteTask" method="POST" class="mx-2">
+                    <input type="hidden" value="{{taskId}}" name="id">
+                    <button class="btn btn-outline-danger btn-lg delete-task-link" type="submit"><i class="bi bi-trash-fill"></i></button>
+                </form>
                 </div>
                   </div>
                 </div>
@@ -35,35 +38,3 @@
                {{/each}}
       </div> 
       </div>  
-
-      {{!-- Modal delete --}}
-        <form id="add-row-form" action="/deleteTask" method="post">
-            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                      
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body ">
-                    <strong>¿Are you sure do you want to delete this task?</strong>
-                    </div>
-                    <div class="modal-footer">
-                    <input type="hidden" name="id" class="form-control pid2" required>
-                        <button type="submit" class="btn btn-success">Delete</button>
-                    </div>
-                        </div>
-                </div>
-            </div>
-        </form>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script>
-  $(document).ready(function(){
-  // Modal DELETE    
-    $('#Tasks').on('click', '.delete', function(){
-        let prod_id = $(this).data('id');
-        $('#DeleteModal').modal('show');
-        $('.id').val(TaskId);
-    })
-})
-</script>
