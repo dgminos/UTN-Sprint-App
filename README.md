@@ -22,3 +22,9 @@ Pages / flow design:
 
 
 ![tasks-manager-app-design](https://user-images.githubusercontent.com/65367714/185751999-371ce747-f9bc-4835-889e-765cd2e7da8b.png)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Trello:
+
+https://trello.com/b/5nowsNrQ/utn-tasks-sprint-app
