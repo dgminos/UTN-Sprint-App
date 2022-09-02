@@ -1,16 +1,16 @@
-import 'dotenv/config'
-import mysql2 from 'mysql2'
 
-export const connection = mysql2.createConnection({
-    host: process.env.DBHOST,
-    user: process.env.DBUSER,
-    password: process.env.DBPASSWORD,
-    port: process.env.DBPORT,
-    database: process.env.DB,
+import mongodb from 'mongodb'
+
+export const mongoClient = mongodb.MongoClient
+const {SPRINT2_MONGODB_HOST, SPRINT2_MONGODB_DATABASE} = process.env
+
+export const mongoDBURI = `mongodb://${SPRINT2_MONGODB_HOST}/${SPRINT2_MONGODB_DATABASE}`
+
+mongoClient.connect(mongoDBURI, (error, db) => {
+    
+    error? console.log(error.message) :
+    console.log('Database connected')  
 })
-connection.connect((err) =>{
-        if(err) throw err;
-        console.log('Connected to database');
-    })
+
 
 

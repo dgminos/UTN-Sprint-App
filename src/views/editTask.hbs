@@ -5,31 +5,31 @@
 </nav>
 <div class="container mt-5 mb-5">
         <div class="d-flex justify-content-center align-items-center">
-{{#each results}}
-   <form class="row g-3 needs-validation add-task-form mb-5 py-2 border-info" id="addTaskForm" novalidate action="" method="POST">
+   <form class="row g-3 needs-validation add-task-form mb-5 py-2 border-info" id="editTaskForm" novalidate action="/editTask/{{result._id}}?_method=PUT" method="POST">
+        <input type="hidden" name="_mehtod" value="PUT">
         <h2 class="fw-bold text-center">Edit task</h2>
   <div class="col-12">
     <label for="taskTitle" class="form-label fw-bold">Title</label>
-    <input type="text" class="form-control" id="taskTitle" value="{{taskTitle}}" name="taskTitle"required>
+    <input type="text" class="form-control" id="taskTitle" value="{{result.Title}}" name="Title"required>
     <div class="valid-feedback">
       Looks good!
     </div>
   </div>
   <div class="col-12">
     <label for="taskCreatedBy" class="form-label fw-bold">Created by</label>
-    <input type="text" class="form-control" id="taskCreatedBy" value={{taskCreatedBy}} name="taskCreatedBy" required>
+    <input type="text" class="form-control" id="taskCreatedBy" value="{{result.CreatedBy}}" name="CreatedBy" required>
     <div class="valid-feedback">
       Looks good!
     </div>
   </div>
  <div class=" col-12">
         <label for="taskDescription" class="form-label fw-bold">Description</label>
-        <textarea id="taskDescription" name="taskDescription" rows="3" class="form-control">{{taskDescription}}</textarea>
+        <textarea id="taskDescription" name="Description" rows="3" class="form-control">{{result.Description}}</textarea>
               </div>
     <div class="col-12">
       <label for="taskLabel" class="form-label fw-bold">Importance label</label>
-  <select class="form-select fw-bold" aria-label="Default select example" name="taskLabel">
-<option selected>{{taskLabel}}</option>
+  <select class="form-select fw-bold" aria-label="Default select example" name="Label" class="form-control">
+<option selected>{{result.Label}}</option>
   <option value="High" name="high">High</option>
   <option value="Medium" name="medium">Medium</option>
   <option value="Low" name="low">Low</option>
@@ -40,6 +40,5 @@
     <a class="btn cancel-add-task-button" type="button" href="/">Cancel</a>
   </div>
 </form>
-{{/each}}
         </div>
       </div> 

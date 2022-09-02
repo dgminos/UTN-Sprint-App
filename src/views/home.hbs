@@ -15,20 +15,20 @@
                 <div class="card home-card h-100 bg-light bg-opacity-10 border border-info shadow-lg">
                     <div class="card-body home-card-body">
                     <h5 class="card-title fw-bold"> Title: </h5>
-                    <p>{{taskTitle}}</p>
+                    <p>{{Title}}</p>
                         <h5 class="card-text fw-bold"> Created by:</h5> 
-                        <p>{{taskCreatedBy}}</p>
+                        <p>{{CreatedBy}}</p>
                     <h5 class="card-text fw-bold"> Description:</h5>
-                    <p>{{taskDescription}}</p>
+                    <p>{{Description}}</p>
                     <h5 class="card-text fw-bold"> Date:</h5>
-                    <p>{{taskDate}}</p>
+                    <p>{{TaskDate}}</p>
                     <h5 class="card-text fw-bold"> Importance label:</h5> 
-                    <p>{{taskLabel}}</p>
+                    <p>{{Label}}</p>
                     <hr>
                 <div class="cards-buttons d-flex justify-content-around">
-                    <a class="btn btn-outline-success btn-lg edit-task-link" href="./editTask/{{taskId}}"><i class="bi bi-pencil-fill"></i></a>
-                    <form action="/deleteTask" method="POST" class="mx-2">
-                    <input type="hidden" value="{{taskId}}" name="id">
+                    <a class="btn btn-outline-success btn-lg edit-task-link" href="/editTask/{{_id}}"><i class="bi bi-pencil-fill"></i></a>
+                    <form action="/deleteTask/{{_id}}?_method=DELETE" method="POST" class="mx-2">
+                    <input type="hidden" value="DELETE" name="_method">
                     <button class="btn btn-outline-danger btn-lg delete-task-link" type="submit"><i class="bi bi-trash-fill"></i></button>
                 </form>
                 </div>

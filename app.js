@@ -4,21 +4,28 @@ import path from 'path'
 import {fileURLToPath} from 'url'
 import hbs from 'hbs'
 import { router } from './src/routes/tasks.routes.js'
+import morgan from 'morgan'
+import methodOverride from 'method-override'
+import './src/db/connection.js'
 
+
+//Initializations
 export const app = express()
 
-const PORT = process.env.PORT || 3034
+//settings
+app.set('port', process.env.PORT || 4000)
 
 // define __dirname in ES module scope
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename);
 
-
 //middlewares
 //static folder
 app.use(express.static(path.join(__dirname, '/public')))
 //for process data sent from forms
+app.use(morgan('dev'))
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride('_method'))
 app.use(express.json());
 
 //views config.
@@ -28,6 +35,6 @@ hbs.registerPartials(path.join(__dirname, 'src/views/partials'))
 
 app.use(router)
 
-app.listen(PORT, () => {
-    console.log(`Server up running on port ${PORT}`)
+app.listen(app.get('port'), () => {
+    console.log('Server up running on port', app.get('port'))
 })  
