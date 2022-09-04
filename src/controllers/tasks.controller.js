@@ -3,11 +3,11 @@ import mongodb from 'mongodb'
 
 export const getTasks = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_MONGODB_HOST, SPRINT2_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_MONGODB_HOST}/`
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
+    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
 
     mongoClient.connect(MONGODB_URI, (error, db) => {
-    const database = db.db(`${SPRINT2_MONGODB_DATABASE}`)
+    const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
 
     if(error){
         console.log(error.message)
@@ -32,11 +32,11 @@ export const getTasks = (req, res) => {
 
 export const createTask = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_MONGODB_HOST, SPRINT2_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_MONGODB_HOST}/`
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
+    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
 
     mongoClient.connect(MONGODB_URI, (error, db) => {
-    const database = db.db(`${SPRINT2_MONGODB_DATABASE}`)
+    const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
 
     if(error){
         console.log(error.message)
@@ -55,11 +55,11 @@ export const createTask = (req, res) => {
 
 export const getTaskById = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_MONGODB_HOST, SPRINT2_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_MONGODB_HOST}/`
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
+    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
     
     mongoClient.connect(MONGODB_URI, (error, db) => { 
-        const database = db.db(`${SPRINT2_MONGODB_DATABASE}`)
+        const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
     
         if(error){
             console.log(error.message)
@@ -78,12 +78,12 @@ export const getTaskById = (req, res) => {
 
 export const updateTask = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_MONGODB_HOST, SPRINT2_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_MONGODB_HOST}/`
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
+    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
     
     mongoClient.connect(MONGODB_URI, (error, db) => {
         
-        const database = db.db(`${SPRINT2_MONGODB_DATABASE}`)
+        const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
     
         if(error){
             console.log(error.message)
@@ -104,11 +104,11 @@ export const updateTask = (req, res) => {
 
 export const deleteTask = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_MONGODB_HOST, SPRINT2_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_MONGODB_HOST}/`
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
+    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
     
     mongoClient.connect(MONGODB_URI, (error, db) => { 
-        const database = db.db(`${SPRINT2_MONGODB_DATABASE}`)
+        const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
     
         if(error){
             console.log(error.message)
