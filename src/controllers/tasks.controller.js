@@ -3,40 +3,42 @@ import mongodb from 'mongodb'
 
 export const getTasks = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE, MONGO_ATLAS_USER, MONGO_ATLAS_PASSWORD, MONGO_ATLAS_HOST, MONGO_ATLAS_DATABASE, MONGO_ATLAS_PARAMS } = process.env
+    const sprint2LocalMongoDBBaseUrl = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
+    const sprint2AtlasMongoDBBaseUrl = `mongodb+srv://${MONGO_ATLAS_USER}:${MONGO_ATLAS_PASSWORD}${MONGO_ATLAS_HOST}/`
 
-    mongoClient.connect(MONGODB_URI, (error, db) => {
-    const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
+    mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
+    const database = db.db(`${MONGO_ATLAS_DATABASE}`)
 
     if(error){
         console.log(error.message)
     }
 
-    database.aggregate(
-        [
-          {
-             $project: {
-                TaskDate: { $dateToString: { format: "%d/%m/%Y", date: "$timestamp" } }
-             }
-          }
-        ]
-      )
+    // database.aggregate(
+    //     [
+    //       {
+    //          $project: {
+    //             TaskDate: { $dateToString: { format: "%d/%m/%Y", date: "$timestamp" } }
+    //          }
+    //       }
+    //     ]
+    //   )
 
-    database.collection('tasks').find({}).toArray((error, results) => {
-        error? console.log(error.message) :
-        res.render('home', {results})
-    })
+database.collection('tasks').find({}).toArray((error, results) => {
+    error? console.log(error.message) :
+    res.render('home', {results})
+})
 })
 }
 
 export const createTask = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE, MONGO_ATLAS_USER, MONGO_ATLAS_PASSWORD, MONGO_ATLAS_HOST, MONGO_ATLAS_DATABASE, MONGO_ATLAS_PARAMS } = process.env
+    const sprint2LocalMongoDBBaseUrl = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
+    const sprint2AtlasMongoDBBaseUrl = `mongodb+srv://${MONGO_ATLAS_USER}:${MONGO_ATLAS_PASSWORD}${MONGO_ATLAS_HOST}/`
 
-    mongoClient.connect(MONGODB_URI, (error, db) => {
-    const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
+    mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
+    const database = db.db(`${MONGO_ATLAS_DATABASE}`)
 
     if(error){
         console.log(error.message)
@@ -55,11 +57,12 @@ export const createTask = (req, res) => {
 
 export const getTaskById = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
-    
-    mongoClient.connect(MONGODB_URI, (error, db) => { 
-        const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE, MONGO_ATLAS_USER, MONGO_ATLAS_PASSWORD, MONGO_ATLAS_HOST, MONGO_ATLAS_DATABASE, MONGO_ATLAS_PARAMS } = process.env
+    const sprint2LocalMongoDBBaseUrl = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
+    const sprint2AtlasMongoDBBaseUrl = `mongodb+srv://${MONGO_ATLAS_USER}:${MONGO_ATLAS_PASSWORD}${MONGO_ATLAS_HOST}/`
+
+    mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
+    const database = db.db(`${MONGO_ATLAS_DATABASE}`)
     
         if(error){
             console.log(error.message)
@@ -78,12 +81,12 @@ export const getTaskById = (req, res) => {
 
 export const updateTask = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
-    
-    mongoClient.connect(MONGODB_URI, (error, db) => {
-        
-        const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE, MONGO_ATLAS_USER, MONGO_ATLAS_PASSWORD, MONGO_ATLAS_HOST, MONGO_ATLAS_DATABASE, MONGO_ATLAS_PARAMS } = process.env
+    const sprint2LocalMongoDBBaseUrl = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
+    const sprint2AtlasMongoDBBaseUrl = `mongodb+srv://${MONGO_ATLAS_USER}:${MONGO_ATLAS_PASSWORD}${MONGO_ATLAS_HOST}/`
+
+    mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
+    const database = db.db(`${MONGO_ATLAS_DATABASE}`)
     
         if(error){
             console.log(error.message)
@@ -104,11 +107,12 @@ export const updateTask = (req, res) => {
 
 export const deleteTask = (req, res) => {
     const mongoClient = mongodb.MongoClient
-    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE} = process.env
-    const MONGODB_URI = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
-    
-    mongoClient.connect(MONGODB_URI, (error, db) => { 
-        const database = db.db(`${SPRINT2_LOCAL_MONGODB_DATABASE}`)
+    const {SPRINT2_LOCAL_MONGODB_HOST, SPRINT2_LOCAL_MONGODB_DATABASE, MONGO_ATLAS_USER, MONGO_ATLAS_PASSWORD, MONGO_ATLAS_HOST, MONGO_ATLAS_DATABASE, MONGO_ATLAS_PARAMS } = process.env
+    const sprint2LocalMongoDBBaseUrl = `mongodb://${SPRINT2_LOCAL_MONGODB_HOST}/`
+    const sprint2AtlasMongoDBBaseUrl = `mongodb+srv://${MONGO_ATLAS_USER}:${MONGO_ATLAS_PASSWORD}${MONGO_ATLAS_HOST}/`
+
+    mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
+    const database = db.db(`${MONGO_ATLAS_DATABASE}`)
     
         if(error){
             console.log(error.message)
