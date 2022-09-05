@@ -10,11 +10,12 @@ export const getTasks = (req, res) => {
     mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
     const database = db.db(`${MONGO_ATLAS_DATABASE}`)
 
-    if(error){
+    if (error){
         console.log(error.message)
     }
 
-database.collection('tasks').find({}).toArray((error, results) => {
+    database.collection('tasks').find({}).toArray((error, results) => {
+
     error? console.log(error.message) :
     res.render('home', {results})
 })
@@ -30,24 +31,18 @@ export const createTask = (req, res) => {
     mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
     const database = db.db(`${MONGO_ATLAS_DATABASE}`)
 
-    if(error){
+    if (error){
         console.log(error.message)
     }
 
-    database.aggregate(
-        [{
-           $project: {
-              TaskDate: { $dateToString: { format: "%d/%m/%Y", TaskDate: "$TaskDate" } },
-           }
-        }]
-    )
+    let today = new Date()
+    let formattedDate = today.toLocaleDateString()
 
     const { Title, CreatedBy, Description, Label } = req.body
-    database.collection('tasks').insertOne({Title, CreatedBy, Description, Label, TaskDate: Date()}, (error, result) => {
+    database.collection('tasks').insertOne({Title, CreatedBy, Description, Label, TaskDate: formattedDate}, (error, result) => {
     
         error? console.log(error.message) :
             console.log('Data inserted in tasks collection:'+ JSON.stringify(req.body))
-            //console.log(result.TaskDate)
             res.redirect('/')
             return result
     })
@@ -73,7 +68,6 @@ export const getTaskById = (req, res) => {
     
         error? console.log(error.message) :
             res.render('editTask', {result})
-     
     })
 })
 }
@@ -87,17 +81,19 @@ export const updateTask = (req, res) => {
     mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
     const database = db.db(`${MONGO_ATLAS_DATABASE}`)
     
-        if(error){
+        if (error){
             console.log(error.message)
         }
 
+        let today = new Date()
+        let formattedDate = today.toLocaleDateString()
         const ObjectId = mongodb.ObjectId
         const id  = req.params.id
         const { Title, CreatedBy, Description, Label } = req.body
-        database.collection('tasks').findOne({_id: ObjectId(id)}, {$set: {Title, CreatedBy, Description, Label}} ,(error, result) => { 
+        database.collection('tasks').findOne({_id: ObjectId(id)}, {$set: {Title, CreatedBy, Description, TaskDate: formattedDate, Label}} ,(error, result) => { 
             
             error? console.log(error.message) :
-           database.collection('tasks').replaceOne({_id: ObjectId(id)},{Title, CreatedBy, Description, Label})
+           database.collection('tasks').replaceOne({_id: ObjectId(id)},{Title, CreatedBy, Description, TaskDate: formattedDate, Label})
             console.log(req.body)
                 res.redirect('/')
     })
@@ -113,7 +109,7 @@ export const deleteTask = (req, res) => {
     mongoClient.connect(sprint2AtlasMongoDBBaseUrl, (error, db) => {
     const database = db.db(`${MONGO_ATLAS_DATABASE}`)
     
-        if(error){
+        if (error){
             console.log(error.message)
         }
         const ObjectId = mongodb.ObjectId
