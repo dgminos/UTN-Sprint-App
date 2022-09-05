@@ -14,16 +14,6 @@ export const getTasks = (req, res) => {
         console.log(error.message)
     }
 
-    // database.aggregate(
-    //     [
-    //       {
-    //          $project: {
-    //             TaskDate: { $dateToString: { format: "%d/%m/%Y", date: "$timestamp" } }
-    //          }
-    //       }
-    //     ]
-    //   )
-
 database.collection('tasks').find({}).toArray((error, results) => {
     error? console.log(error.message) :
     res.render('home', {results})
@@ -43,12 +33,21 @@ export const createTask = (req, res) => {
     if(error){
         console.log(error.message)
     }
-    const Taskdate = new Date()
+
+    database.aggregate(
+        [{
+           $project: {
+              TaskDate: { $dateToString: { format: "%d/%m/%Y", TaskDate: "$TaskDate" } },
+           }
+        }]
+    )
+
     const { Title, CreatedBy, Description, Label } = req.body
-    database.collection('tasks').insertOne(req.body,(error, result) => {
+    database.collection('tasks').insertOne({Title, CreatedBy, Description, Label, TaskDate: Date()}, (error, result) => {
     
         error? console.log(error.message) :
             console.log('Data inserted in tasks collection:'+ JSON.stringify(req.body))
+            //console.log(result.TaskDate)
             res.redirect('/')
             return result
     })
