@@ -36,7 +36,7 @@ export const createTask = (req, res) => {
     }
 
     let today = new Date()
-    let formattedDate = today.toLocaleDateString()
+    let formattedDate = today.toUTCString()
 
     const { Title, CreatedBy, Description, Label } = req.body
     database.collection('tasks').insertOne({Title, CreatedBy, Description, Label, TaskDate: formattedDate}, (error, result) => {
@@ -86,7 +86,7 @@ export const updateTask = (req, res) => {
         }
 
         let today = new Date()
-        let formattedDate = today.toLocaleDateString()
+        let formattedDate = today.toUTCString()
         const ObjectId = mongodb.ObjectId
         const id  = req.params.id
         const { Title, CreatedBy, Description, Label } = req.body
