@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 //middlewares
 //static folder
-app.use(express.static(path.join(__dirname, '/public')))
+app.use(express.static(path.join(__dirname, '.')))
 //for process data sent from forms
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
