@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "node app.js build"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
